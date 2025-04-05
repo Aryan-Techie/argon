@@ -39,7 +39,6 @@ ARGON is still in development. To stay updated on our progress:
 - 💼 LinkedIn: [Aryan Jangra](https://www.linkedin.com/in/aryantechie)
 - 📷 Instagram: [@aryantechie](https://instagram.com/aryantechie)
 - 🐦 Twitter: [@aryantechie](https://x.com/aryantechie)
-- 💻 GitHub: [Aryan-Techie](https://github.com/Aryan-Techie)
 
 ## 🔒 Privacy & Security
 
