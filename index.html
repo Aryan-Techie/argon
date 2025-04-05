@@ -19,372 +19,62 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #1e90ff;
-            --primary-dark: #0070d6;
-            --primary-light: #5badff;
-            --secondary-color: #121212;
-            --dark-bg: #000000;
-            --container-bg: #0a0a0a;
-            --text-color: #ffffff;
-            --text-light: #cccccc;
-            --text-lighter: #999999;
-            --feature-bg: #111111;
-            --form-bg: #0d0d0d;
-            --input-bg: #1a1a1a;
-            --input-border: #333333;
-            --accent-color: #4169e1;
-            --accent-glow: rgba(30, 144, 255, 0.4);
-            --shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            background-color: var(--dark-bg) !important;
-            color: var(--text-color) !important;
-        }
-
-        body {
-            font-family: 'Open Sans', Arial, sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #050c17 100%) !important;
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            text-align: center;
-            line-height: 1.6;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            padding: 3rem;
-            background-color: var(--container-bg);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        .container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
-        }
-
-        header {
-            margin-bottom: 2rem;
-        }
-
-        .logo {
-            width: 150px;
-            height: auto;
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-            filter: drop-shadow(0 0 8px var(--accent-glow));
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 15px var(--accent-glow));
-        }
-
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            letter-spacing: 1px;
-        }
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-        }
-
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: var(--text-light);
-        }
-
-        .coming-soon {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            color: var(--primary-light);
-            letter-spacing: 1px;
-        }
-
-        .progress-container {
-            margin: 2.5rem 0;
-        }
-
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        .progress-bar {
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 65%;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            border-radius: 6px;
-            animation: progress 2.5s ease-in-out infinite alternate;
-            position: relative;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        @keyframes progress {
-            from { width: 45%; }
-            to { width: 75%; }
-        }
-
-        .features {
-            display: flex;
-            justify-content: space-around;
-            margin: 2.5rem 0;
-            flex-wrap: wrap;
-        }
-
-        .feature {
-            flex: 1;
-            min-width: 200px;
-            padding: 1.8rem;
-            margin: 0.5rem;
-            background-color: var(--feature-bg);
-            border-radius: 12px;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(30, 144, 255, 0.2);
-            background-color: #121212;
-        }
-
-        .feature h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .feature p {
-            color: var(--text-lighter);
-        }
-
-        .signup-form {
-            margin: 2rem 0;
-            padding: 2rem;
-            background-color: var(--form-bg);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        }
-
-        .form-group {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .form-control {
-            flex: 1;
-            padding: 14px 18px;
-            border: 2px solid var(--input-border);
-            border-radius: 8px 0 0 8px;
-            font-size: 1rem;
-            outline: none;
-            transition: var(--transition);
-            background-color: var(--input-bg);
-            color: var(--text-color);
-        }
-
-        .form-control::placeholder {
-            color: var(--text-lighter);
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.3);
-        }
-
-        .btn {
-            padding: 0 24px;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            color: white;
-            border: none;
-            border-radius: 0 8px 8px 0;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .btn:hover {
-            background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(30, 144, 255, 0.4);
-        }
-
-        footer {
-            margin-top: 2.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .contact {
-            margin-top: 0.5rem;
-            font-size: 1rem;
-            color: var(--text-lighter);
-        }
-
-        a { 
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        a:hover {
-            color: var(--primary-light);
-        }
-
-        a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--primary-light);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-
-        a:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            margin-top: 1.5rem;
-            gap: 1.2rem;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background-color: rgba(255, 255, 255, 0.03);
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            transition: var(--transition);
-            color: var(--text-light);
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
-            background: linear-gradient(to right bottom, var(--primary-color), var(--accent-color));
-            color: white;
-        }
-
-        .social-link::after {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 2rem 1.5rem;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .features {
-                flex-direction: column;
-            }
-            
-            .feature {
-                margin: 0.8rem 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- JavaScript -->
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <main class="container">
         <header>
             <img src="logos/logo.png" alt="ARGON Logo" class="logo">
             <h1>ARGON</h1>
+            <p class="tagline">Your Shield Against Chaos.</p>
             <p class="coming-soon">Digital Shield Coming Soon</p>
         </header>
 
         <section>
-            <p>We're working hard to bring you the ultimate shield against digital threats, 
-               protecting your online experience with advanced, intelligent technology.</p>
+            <p>This is ARGON,<br> An Intelligent Shield that Blocks Distractions <br> so You can Focus on What Truly Matters.</p>
             
-            <div class="progress-container">
-                <div class="progress-label">
-                    <span>Development Progress</span>
-                    <span>65%</span>
+            <div class="development-status">
+                <div class="status-label">
+                    <span class="status-text">Development Status</span>
+                    <span class="status-percentage">Calculating...</span>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
+                <div class="status-details">
+                    <div class="status-item">
+                        <div class="status-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="status-item-label">Core Engine</div>
+                            <div class="status-item-value">Complete</div>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="status-item-label">Features</div>
+                            <div class="status-item-value">In Progress</div>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="status-item-label">Launch Date</div>
+                            <div class="status-item-value">Coming Soon</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -392,46 +82,52 @@
             
             <div class="features">
                 <div class="feature">
-                    <h3>Privacy Protection</h3>
-                    <p>Shield your digital identity from trackers and data collectors</p>
+                    <h2>&#129504</h2>
+                    <h3>Mindful Focus Engine</h3>
+                    <p>Argon doesn't just block sites—it <b>understands</b> your patterns. With intelligent nudges, it helps you course-correct before distraction even begins.</p>
                 </div>
                 <div class="feature">
-                    <h3>Threat Defense</h3>
-                    <p>Real-time defense against malware and phishing attempts</p>
+                    <h2>&#128200</h2>
+                    <h3>Productivity, Visualized Like Never Before</h3>
+                    <p>Not just bar graphs.<br>Argon shows your digital behavior as trends, streaks, and actionable insights to help you <b>actually</b> change habits.</p>
                 </div>
                 <div class="feature">
-                    <h3>Smart Filtering</h3>
-                    <p>AI-powered content filtering for a cleaner browsing experience</p>
+                    <h2>🛡️</h2>
+                    <h3>Context-Aware Blocking</h3>
+                    <p>Whether it's a late-night doom-scroll or mid-study tab chaos, Argon adapts in real time blocking distractions <b>only when it matters most</b>.</p>
                 </div>
             </div>
         </section>
 
         <section class="signup-form">
-            <h2>Be the first to know when we launch</h2>
-            <form id="newsletter-form">
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Enter your email address" required>
-                    <button type="submit" class="btn">Notify Me</button>
-                </div>
-            </form>
+            <h2>Have Questions?</h2>
+            <div class="contact-button-container">
+                <a href="mailto:admin@aroice.in" class="contact-button">
+                    <span class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </span>
+                    Contact Us: admin@aroice.in
+                </a>
+            </div>
         </section>
 
         <footer>
-            <p>Our team is making progress every day. Check back soon for updates!</p>
-            <p class="contact">Questions? Contact us at <a href="mailto:info@argon-shield.com">info@argon-shield.com</a></p>
+            <p>We are making progress every day.<br> Check back soon for updates!</p>
             
             <div class="social-links">
-                <a href="#" class="social-link" aria-label="Twitter">
+                <a href="https://x.com/aryantechie" class="social-link" aria-label="Twitter">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
                     </svg>
                 </a>
-                <a href="#" class="social-link" aria-label="GitHub">
+                <a href="https://github.com/Aryan-Techie" class="social-link" aria-label="GitHub">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                 </a>
-                <a href="#" class="social-link" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/aryantechie" class="social-link" aria-label="LinkedIn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                         <rect x="2" y="9" width="4" height="12"></rect>
@@ -442,11 +138,5 @@
         </footer>
     </main>
 
-    <script>
-        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your interest! We\'ll notify you when ARGON launches.');
-        });
-    </script>
 </body>
 </html>
