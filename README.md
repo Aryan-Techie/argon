@@ -1,6 +1,6 @@
 # 🛡️ ARGON: Your Shield Against Chaos
 
-![ARGON Logo](webp/logo.webp)
+<img src="webp/logo.webp" alt="ARGON Logo" width="100">
 
 ## 🚀 About ARGON
 
