@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ARGON Feedback Portal - Submit your feedback and get support">
+    <meta name="keywords" content="ARGON feedback, ARGON support, productivity extension feedback">
+    <title>ARGON Feedback Portal | Your Shield Against Chaos</title>
+    
+    <!-- Favicon references -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
+    <link rel="manifest" href="../favicons/site.webmanifest">
+    <link rel="shortcut icon" href="../favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#000000">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="feedback.css">
+</head>
+<body class="dark-theme">
+    <main class="help-container">
+        <header class="help-header">
+            <a href="index.html" class="back-to-home">
+                <img src="../webp/logo.webp" alt="ARGON Logo" class="small-logo">
+                <span>Back to Help Center</span>
+            </a>
+            
+            <h1 style="margin-top: 0.5em;">ARGON Feedback Portal</h1>
+            <p>We value your input. Share your experience to help us improve ARGON.</p>
+        </header>
+
+        <div class="feedback-container">
+            <!-- Security notice for users -->
+            <div class="security-notice">
+                <p><strong>Note:</strong> For enhanced security, this form uses Google reCAPTCHA to prevent spam. Your data is processed securely.</p>
+            </div>
+            
+            <div class="feedback-tabs">
+                <div class="feedback-tab active" data-tab="feedback-form">Submit Feedback</div>
+                <div class="feedback-tab" data-tab="support-request">Request Support</div>
+                <div class="feedback-tab" data-tab="feature-request">Feature Request</div>
+                <div class="feedback-tab" data-tab="bug-report">Report Bug</div>
+            </div>
+
+            <div class="feedback-content">
+                <!-- Feedback Form Section -->
+                <section id="feedback-form" class="feedback-section active">
+                    <h2>Share Your Feedback</h2>
+                    <p>Your feedback helps us make ARGON better. Let us know what you think!</p>
+                    
+                    <!-- Updated form with action attribute for enhanced security options -->
+                    <form id="general-feedback-form" class="feedback-form" data-script-url="https://script.google.com/macros/s/YOUR_GOOGLE_APPS_SCRIPT_DEPLOYMENT_ID/exec" data-form-type="general">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feedback-type">Feedback Type</label>
+                            <select id="feedback-type" name="feedback-type" required>
+                                <option value="" disabled selected>Select a category</option>
+                                <option value="general">General Feedback</option>
+                                <option value="ui">User Interface</option>
+                                <option value="performance">Performance</option>
+                                <option value="blocking">Blocking Features</option>
+                                <option value="analytics">Analytics & Insights</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rating">Your Experience (1-5 stars)</label>
+                            <div class="rating-container">
+                                <div class="rating">
+                                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label>
+                                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4"></label>
+                                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
+                                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
+                                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feedback-message">Your Feedback</label>
+                            <textarea id="feedback-message" name="feedback-message" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="contact-permission" name="contact-permission">
+                            <label for="contact-permission">I agree to be contacted about my feedback if needed</label>
+                        </div>
+                        
+                        <!-- Add reCAPTCHA for security -->
+                        <div class="form-group recaptcha-container">
+                            <div class="g-recaptcha" data-sitekey="6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="primary-button">Submit Feedback</button>
+                            <button type="reset" class="secondary-button">Clear Form</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Support Request Section -->
+                <section id="support-request" class="feedback-section">
+                    <h2>Request Support</h2>
+                    <p>Having issues with ARGON? Let us know how we can help you.</p>
+                    
+                    <form id="support-request-form" class="feedback-form" data-script-url="https://script.google.com/macros/s/YOUR_GOOGLE_APPS_SCRIPT_DEPLOYMENT_ID/exec">
+                        <div class="form-group">
+                            <label for="support-name">Your Name</label>
+                            <input type="text" id="support-name" name="support-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="support-email">Email Address</label>
+                            <input type="email" id="support-email" name="support-email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="issue-type">Issue Type</label>
+                            <select id="issue-type" name="issue-type" required>
+                                <option value="" disabled selected>Select issue type</option>
+                                <option value="installation">Installation Problem</option>
+                                <option value="setup">Setup Problem</option>
+                                <option value="blocking">Blocking Issues</option>
+                                <option value="sync">Sync Issues</option>
+                                <option value="permissions">Permission Issues</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="urgency">Urgency Level</label>
+                            <select id="urgency" name="urgency" required>
+                                <option value="low">Low - When you have time</option>
+                                <option value="medium">Medium - Affecting my work</option>
+                                <option value="high">High - Can't use the product</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="browser">Your Browser</label>
+                            <select id="browser" name="browser" required>
+                                <option value="" disabled selected>Select your browser</option>
+                                <option value="chrome">Google Chrome</option>
+                                <option value="firefox">Mozilla Firefox</option>
+                                <option value="edge">Microsoft Edge</option>
+                                <option value="safari">Safari</option>
+                                <option value="opera">Opera</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="issue-description">Describe Your Issue</label>
+                            <textarea id="issue-description" name="issue-description" rows="5" required placeholder="Please include steps to reproduce the issue if possible"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="screenshot">Upload Screenshot (Optional)</label>
+                            <input type="file" id="screenshot" name="screenshot" accept="image/*">
+                        </div>
+                        
+                        <!-- Add reCAPTCHA for security -->
+                        <div class="form-group recaptcha-container">
+                            <div class="g-recaptcha" data-sitekey="6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="primary-button">Submit Support Request</button>
+                            <button type="reset" class="secondary-button">Clear Form</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Feature Request Section -->
+                <section id="feature-request" class="feedback-section">
+                    <h2>Feature Request</h2>
+                    <p>Have an idea that would make ARGON better? We'd love to hear it!</p>
+                    
+                    <form id="feature-request-form" class="feedback-form" data-script-url="https://script.google.com/macros/s/YOUR_GOOGLE_APPS_SCRIPT_DEPLOYMENT_ID/exec">
+                        <div class="form-group">
+                            <label for="feature-name">Your Name</label>
+                            <input type="text" id="feature-name" name="feature-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feature-email">Email Address</label>
+                            <input type="email" id="feature-email" name="feature-email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feature-title">Feature Title</label>
+                            <input type="text" id="feature-title" name="feature-title" required placeholder="A brief title for your feature idea">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feature-category">Feature Category</label>
+                            <select id="feature-category" name="feature-category" required>
+                                <option value="" disabled selected>Select category</option>
+                                <option value="blocking">Blocking Functionality</option>
+                                <option value="analytics">Analytics & Insights</option>
+                                <option value="settings">Settings & Configuration</option>
+                                <option value="ui">User Interface</option>
+                                <option value="performance">Performance</option>
+                                <option value="integration">Integrations</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feature-description">Describe Your Feature Idea</label>
+                            <textarea id="feature-description" name="feature-description" rows="5" required placeholder="What would you like to see in ARGON and how would it help you?"></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="feature-notify" name="feature-notify" checked>
+                            <label for="feature-notify">Notify me if this feature is implemented</label>
+                        </div>
+                        
+                        <!-- Add reCAPTCHA for security -->
+                        <div class="form-group recaptcha-container">
+                            <div class="g-recaptcha" data-sitekey="6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="primary-button">Submit Feature Request</button>
+                            <button type="reset" class="secondary-button">Clear Form</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Bug Report Section -->
+                <section id="bug-report" class="feedback-section">
+                    <h2>Report a Bug</h2>
+                    <p>Found a bug in ARGON? Help us squash it by providing the details below.</p>
+                    
+                    <form id="bug-report-form" class="feedback-form" data-script-url="https://script.google.com/macros/s/YOUR_GOOGLE_APPS_SCRIPT_DEPLOYMENT_ID/exec">
+                        <div class="form-group">
+                            <label for="bug-name">Your Name</label>
+                            <input type="text" id="bug-name" name="bug-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bug-email">Email Address</label>
+                            <input type="email" id="bug-email" name="bug-email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bug-title">Bug Title</label>
+                            <input type="text" id="bug-title" name="bug-title" required placeholder="A brief description of the bug">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bug-browser">Browser & Version</label>
+                            <input type="text" id="bug-browser" name="bug-browser" required placeholder="e.g., Chrome 91.0.4472.124">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bug-steps">Steps to Reproduce</label>
+                            <textarea id="bug-steps" name="bug-steps" rows="3" required placeholder="1. Go to...
+2. Click on...
+3. Observe that..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bug-expected">Expected Behavior</label>
+                            <textarea id="bug-expected" name="bug-expected" rows="2" required placeholder="What should have happened?"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bug-actual">Actual Behavior</label>
+                            <textarea id="bug-actual" name="bug-actual" rows="2" required placeholder="What actually happened?"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bug-screenshot">Upload Screenshot (Optional)</label>
+                            <input type="file" id="bug-screenshot" name="bug-screenshot" accept="image/*">
+                        </div>
+                        
+                        <!-- Add reCAPTCHA for security -->
+                        <div class="form-group recaptcha-container">
+                            <div class="g-recaptcha" data-sitekey="6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="primary-button">Submit Bug Report</button>
+                            <button type="reset" class="secondary-button">Clear Form</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+
+        <footer class="help-footer">
+            <p>Thank you for helping us improve ARGON.</p>
+            <div class="action-buttons">
+                <a href="index.html" class="btn secondary-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/>
+                    </svg>
+                    Return to Help Center
+                </a>
+            </div>
+            <p><br>© 2025 Aroice.<br>All rights reserved.</p>
+        </footer>
+    </main>
+
+    <script src="feedback.js"></script>
+    <!-- Add reCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+</html>

@@ -1,40 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Theme toggle functionality - fixed version
-    const themeToggle = document.getElementById('theme-toggle');
-    if (!themeToggle) {
-        console.error("Theme toggle button not found");
-        return;
-    }
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('argon-theme');
-    
-    // Set initial theme based on saved preference or default to dark
-    if (savedTheme === 'light') {
-        document.body.classList.remove('dark-theme');
-        document.body.classList.add('light-theme');
-        console.log("Applied light theme from saved preference");
-    } else {
-        document.body.classList.add('dark-theme');
-        document.body.classList.remove('light-theme');
-        console.log("Applied dark theme (default)");
-    }
-    
-    // Toggle theme when button is clicked
-    themeToggle.addEventListener('click', function() {
-        console.log("Theme toggle clicked");
-        if (document.body.classList.contains('dark-theme')) {
-            document.body.classList.remove('dark-theme');
-            document.body.classList.add('light-theme');
-            localStorage.setItem('argon-theme', 'light');
-            console.log("Switched to light theme");
-        } else {
-            document.body.classList.remove('light-theme');
-            document.body.classList.add('dark-theme');
-            localStorage.setItem('argon-theme', 'dark');
-            console.log("Switched to dark theme");
-        }
-    });
+    // Theme toggle functionality has been removed - dark theme only
+    document.body.classList.add('dark-theme');
     
     // Tab navigation
     const navTabs = document.querySelectorAll('.nav-tab');
@@ -85,6 +51,33 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Support email enhancement - Auto generate subject line and add BCC
+    const supportEmailLink = document.querySelector('.primary-btn[href^="mailto:"]');
+    if (supportEmailLink) {
+        supportEmailLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Prompt for user info
+            const userName = prompt("Please enter your name:", "");
+            if (userName === null) return; // User cancelled
+            
+            const userIssue = prompt("Briefly describe what you need help with:", "");
+            if (userIssue === null) return; // User cancelled
+            
+            // Generate formatted subject line
+            const subject = `ARGON Support: ${userName} - ${userIssue}`;
+            
+            // Get base email address
+            const baseEmail = this.getAttribute('href').replace('mailto:', '');
+            
+            // Create new mailto link with subject and BCC
+            const mailtoLink = `mailto:${baseEmail}?subject=${encodeURIComponent(subject)}&bcc=contact.aryantechie@gmail.com`;
+            
+            // Navigate to new mailto link
+            window.location.href = mailtoLink;
+        });
+    }
     
     // Sidebar navigation (smooth scroll)
     const sidebarLinks = document.querySelectorAll('.sidebar-link a');
@@ -170,6 +163,5 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
     
-    // Create images directory if it doesn't exist
-    console.log("Help Center initialized. Some images may be placeholders until ARGON's launch.");
+    console.log("Help Center initialized in dark theme mode only.");
 });
