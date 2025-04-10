@@ -36,58 +36,79 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Verify reCAPTCHA first
-            const recaptchaResponse = grecaptcha.getResponse();
-            if (!recaptchaResponse) {
-                alert("Please complete the reCAPTCHA verification.");
-                return;
-            }
-            
-            // Get form data
-            const formData = new FormData(this);
+            // Verify reCAPTCHA is checked - modified to work with explicit rendering
             const formId = this.id;
+            let recaptchaId;
             
-            // Create a data object from form fields
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-            
-            // Add reCAPTCHA token to form data
-            data.recaptchaToken = recaptchaResponse;
-
-            // Add form type and security measures
-            data.formType = formId;
-            
-            // Add timestamp
-            data.submittedAt = new Date().toISOString();
-            
-            // Implement submission throttling - store last submission time
-            const lastSubmission = localStorage.getItem('lastFormSubmission');
-            const currentTime = new Date().getTime();
-            
-            if (lastSubmission && (currentTime - parseInt(lastSubmission)) < 10000) { // 10 second cooldown
-                alert("Please wait a few seconds before submitting another form.");
-                return;
+            // Determine which reCAPTCHA widget to check based on form ID
+            switch(formId) {
+                case 'general-feedback-form': recaptchaId = 'general'; break;
+                case 'support-request-form': recaptchaId = 'support'; break;
+                case 'feature-request-form': recaptchaId = 'feature'; break;
+                case 'bug-report-form': recaptchaId = 'bug'; break;
+                default: recaptchaId = null;
             }
             
-            // Record this submission time
-            localStorage.setItem('lastFormSubmission', currentTime.toString());
-            
-            // Send data to Google Sheets via the web app URL
-            submitToGoogleSheet(data, formId);
-            
-            // Reset reCAPTCHA
-            grecaptcha.reset();
-            
-            // Reset the form
-            form.reset();
-            
-            // If there's a file input, reset its value manually
-            const fileInputs = form.querySelectorAll('input[type="file"]');
-            fileInputs.forEach(input => {
-                input.value = '';
-            });
+            // If we have a valid reCAPTCHA widget ID, verify it
+            if (recaptchaId && typeof recaptchaWidgets !== 'undefined') {
+                const recaptchaResponse = grecaptcha.getResponse(recaptchaWidgets[recaptchaId]);
+                
+                if (!recaptchaResponse) {
+                    alert("Please complete the reCAPTCHA verification.");
+                    return;
+                }
+                
+                // Add reCAPTCHA response to the data we'll send
+                const formData = new FormData(this);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+                
+                // Add the recaptcha token
+                data.recaptchaToken = recaptchaResponse;
+                
+                // Continue with form processing
+                data.formType = formId;
+                data.submittedAt = new Date().toISOString();
+                
+                // Implement submission throttling - store last submission time
+                const lastSubmission = localStorage.getItem('lastFormSubmission');
+                const currentTime = new Date().getTime();
+                
+                if (lastSubmission && (currentTime - parseInt(lastSubmission)) < 10000) { // 10 second cooldown
+                    alert("Please wait a few seconds before submitting another form.");
+                    return;
+                }
+                
+                // Record this submission time
+                localStorage.setItem('lastFormSubmission', currentTime.toString());
+                
+                // Send data to Google Sheets via the web app URL
+                submitToGoogleSheet(data, formId);
+                
+                // Reset reCAPTCHA widget
+                grecaptcha.reset(recaptchaWidgets[recaptchaId]);
+                
+                // Reset the form
+                form.reset();
+                
+                // If there's a file input, reset its value manually
+                const fileInputs = form.querySelectorAll('input[type="file"]');
+                fileInputs.forEach(input => {
+                    input.value = '';
+                });
+                
+                // Disable submit button again
+                const submitButton = form.querySelector('button[type="submit"]');
+                if (submitButton) {
+                    submitButton.disabled = true;
+                }
+            } else {
+                // No valid reCAPTCHA found - show error
+                console.error('No valid reCAPTCHA widget found for form:', formId);
+                alert("reCAPTCHA verification failed. Please reload the page and try again.");
+            }
         });
     });
     

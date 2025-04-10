@@ -253,6 +253,44 @@
     font-size: 1.2rem;
 }
 
+/* Updated reCAPTCHA styling */
+.recaptcha-placeholder {
+    min-height: 78px;
+}
+
+.recaptcha-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.recaptcha-container:after {
+    content: 'This helps us prevent spam';
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    font-size: 0.8rem;
+    color: var(--text-lighter);
+    text-align: center;
+    width: 100%;
+}
+
+/* reCAPTCHA error state */
+.recaptcha-error {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    text-align: center;
+    display: none;
+}
+
+.recaptcha-error.visible {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
 .recaptcha-container {
     display: flex;
     justify-content: center;

@@ -26,27 +26,32 @@ Netlify offers free hosting with serverless functions to securely process forms:
        // Parse the form data
        const data = JSON.parse(event.body);
        
-       // Validate reCAPTCHA token
+       // Validate reCAPTCHA token - FIXED: Make sure to use correct reCAPTCHA version (v2)
        const recaptchaToken = data.recaptchaToken;
        const recaptchaSecret = '6LdAKBIrAAAAAO86eI3ZlDM2LDdyd88uHNzGsa9G';
        
-       // Call the reCAPTCHA verification API
-       const recaptchaResponse = await axios.post(
-         'https://www.google.com/recaptcha/api/siteverify',
-         null,
-         {
-           params: {
-             secret: recaptchaSecret,
-             response: recaptchaToken
-           }
+       // Call the reCAPTCHA verification API with proper content type and encoding
+       const recaptchaResponse = await axios({
+         method: 'post',
+         url: 'https://www.google.com/recaptcha/api/siteverify',
+         params: {
+           secret: recaptchaSecret,
+           response: recaptchaToken
+         },
+         headers: {
+           'Content-Type': 'application/x-www-form-urlencoded'
          }
-       );
+       });
        
        // Check if reCAPTCHA verification passed
        if (!recaptchaResponse.data.success) {
+         console.error('reCAPTCHA verification failed:', recaptchaResponse.data);
          return {
            statusCode: 400,
-           body: JSON.stringify({ error: "reCAPTCHA verification failed" })
+           body: JSON.stringify({ 
+             error: "reCAPTCHA verification failed", 
+             details: recaptchaResponse.data['error-codes'] || [] 
+           })
          };
        }
        
@@ -90,12 +95,26 @@ Netlify offers free hosting with serverless functions to securely process forms:
    }
    ```
 
-5. **HTML Implementation of reCAPTCHA**:
+## Troubleshooting reCAPTCHA "Invalid key type" Error
+
+If you're seeing an "ERROR for site owner: Invalid key type" message, here are the most common causes and solutions:
+
+1. **Version Mismatch**: Make sure you're using the right reCAPTCHA version. The key you provided is for reCAPTCHA v2 Checkbox, but you might be trying to use it with v3 or Invisible reCAPTCHA.
+
+2. **Domain Restrictions**: Verify that the domain where you're testing the reCAPTCHA is included in the list of authorized domains in your reCAPTCHA settings at [https://www.google.com/recaptcha/admin](https://www.google.com/recaptcha/admin).
+
+3. **Local Testing**: If you're testing locally, add `localhost` and `127.0.0.1` to your authorized domains.
+
+4. **Implementation Steps**:
+   - Go to [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin)
+   - Make sure your site is registered as "reCAPTCHA v2" with the "I'm not a robot" Checkbox
+   - Update your domain list to include all domains where the form will be used
+   - Generate new keys if necessary
+
+5. **HTML Implementation**: Ensure your HTML implements the reCAPTCHA correctly:
    ```html
-   <!-- Add the reCAPTCHA widget before your submit button -->
+   <!-- Correct implementation for reCAPTCHA v2 Checkbox -->
    <div class="g-recaptcha" data-sitekey="6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_"></div>
-   
-   <!-- Add at the end of your HTML body -->
    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
    ```
 
@@ -145,12 +164,14 @@ Our reCAPTCHA is configured with the following keys:
 
 1. **Site Key** (public, used in HTML): `6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_`
 2. **Secret Key** (private, used server-side only): `6LdAKBIrAAAAAO86eI3ZlDM2LDdyd88uHNzGsa9G`
+3. **reCAPTCHA Type**: v2 Checkbox ("I'm not a robot")
 
 Remember to:
 - Only use the site key in client-side code (HTML)
 - Only use the secret key in server-side code (never in JavaScript that runs in the browser)
 - Implement server-side verification of reCAPTCHA tokens
 - Test your reCAPTCHA implementation in both development and production environments
+- Add all domains where your form will be used to the reCAPTCHA admin settings
 
 ## Conclusion
 

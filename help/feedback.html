@@ -102,9 +102,9 @@
                             <label for="contact-permission">I agree to be contacted about my feedback if needed</label>
                         </div>
                         
-                        <!-- Add reCAPTCHA for security -->
+                        <!-- Fix reCAPTCHA implementation -->
                         <div class="form-group recaptcha-container">
-                            <div class="g-recaptcha" data-sitekey="6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_"></div>
+                            <div id="recaptcha-general" class="recaptcha-placeholder"></div>
                         </div>
                         
                         <div class="form-actions">
@@ -175,9 +175,9 @@
                             <input type="file" id="screenshot" name="screenshot" accept="image/*">
                         </div>
                         
-                        <!-- Add reCAPTCHA for security -->
+                        <!-- Fix other reCAPTCHA instances in support-request form -->
                         <div class="form-group recaptcha-container">
-                            <div class="g-recaptcha" data-sitekey="6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_"></div>
+                            <div id="recaptcha-support" class="recaptcha-placeholder"></div>
                         </div>
                         
                         <div class="form-actions">
@@ -232,9 +232,9 @@
                             <label for="feature-notify">Notify me if this feature is implemented</label>
                         </div>
                         
-                        <!-- Add reCAPTCHA for security -->
+                        <!-- Fix other reCAPTCHA instances in feature-request form -->
                         <div class="form-group recaptcha-container">
-                            <div class="g-recaptcha" data-sitekey="6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_"></div>
+                            <div id="recaptcha-feature" class="recaptcha-placeholder"></div>
                         </div>
                         
                         <div class="form-actions">
@@ -292,9 +292,9 @@
                             <input type="file" id="bug-screenshot" name="bug-screenshot" accept="image/*">
                         </div>
                         
-                        <!-- Add reCAPTCHA for security -->
+                        <!-- Fix other reCAPTCHA instances in bug-report form -->
                         <div class="form-group recaptcha-container">
-                            <div class="g-recaptcha" data-sitekey="6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_"></div>
+                            <div id="recaptcha-bug" class="recaptcha-placeholder"></div>
                         </div>
                         
                         <div class="form-actions">
@@ -321,7 +321,77 @@
     </main>
 
     <script src="feedback.js"></script>
-    <!-- Add reCAPTCHA script -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Updated reCAPTCHA implementation -->
+    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+    <script>
+        // Global variable to track reCAPTCHA widgets
+        var recaptchaWidgets = {};
+        
+        // Initialize reCAPTCHA widgets once API is loaded
+        function onRecaptchaLoad() {
+            // Initialize each reCAPTCHA placeholder
+            recaptchaWidgets.general = grecaptcha.render('recaptcha-general', {
+                'sitekey': '6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_',
+                'callback': function() { enableSubmitButton('general-feedback-form'); }
+            });
+            
+            recaptchaWidgets.support = grecaptcha.render('recaptcha-support', {
+                'sitekey': '6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_',
+                'callback': function() { enableSubmitButton('support-request-form'); }
+            });
+            
+            recaptchaWidgets.feature = grecaptcha.render('recaptcha-feature', {
+                'sitekey': '6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_',
+                'callback': function() { enableSubmitButton('feature-request-form'); }
+            });
+            
+            recaptchaWidgets.bug = grecaptcha.render('recaptcha-bug', {
+                'sitekey': '6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_',
+                'callback': function() { enableSubmitButton('bug-report-form'); }
+            });
+            
+            console.log('reCAPTCHA widgets initialized');
+        }
+        
+        // Enable submit button for a specific form
+        function enableSubmitButton(formId) {
+            const form = document.getElementById(formId);
+            if (form) {
+                const submitButton = form.querySelector('button[type="submit"]');
+                if (submitButton) {
+                    submitButton.disabled = false;
+                }
+            }
+        }
+        
+        // Disable submit buttons on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitButtons = document.querySelectorAll('button[type="submit"]');
+            submitButtons.forEach(button => {
+                button.disabled = true;
+            });
+            
+            // Reset reCAPTCHA when switching tabs
+            const tabs = document.querySelectorAll('.feedback-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Reset all reCAPTCHA widgets when switching tabs
+                    for (let key in recaptchaWidgets) {
+                        try {
+                            grecaptcha.reset(recaptchaWidgets[key]);
+                            
+                            // Also disable submit buttons again
+                            const submitButtons = document.querySelectorAll('button[type="submit"]');
+                            submitButtons.forEach(button => {
+                                button.disabled = true;
+                            });
+                        } catch (e) {
+                            console.error('Error resetting reCAPTCHA:', e);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
