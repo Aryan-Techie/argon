@@ -7,6 +7,8 @@
     <meta name="keywords" content="ARGON feedback, ARGON support, productivity extension feedback">
     <title>ARGON Feedback Portal | Your Shield Against Chaos</title>
     
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_"></script>
+
     <!-- Favicon references -->
     <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
@@ -393,5 +395,13 @@
             });
         });
     </script>
+    <script>
+        function onClick(e) {
+          e.preventDefault();
+          grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute('6LdAKBIrAAAAAF4SNl1J9SXs628e0PxCAMvKwH7_', {action: 'LOGIN'});
+          });
+        }
+      </script>
 </body>
 </html>

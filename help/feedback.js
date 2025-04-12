@@ -36,10 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Verify reCAPTCHA is checked - modified to work with explicit rendering
+            // Verify reCAPTCHA is checked - handle invalid key type errors
             const formId = this.id;
             let recaptchaId;
-            
+
             // Determine which reCAPTCHA widget to check based on form ID
             switch(formId) {
                 case 'general-feedback-form': recaptchaId = 'general'; break;
@@ -48,30 +48,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'bug-report-form': recaptchaId = 'bug'; break;
                 default: recaptchaId = null;
             }
-            
+
             // If we have a valid reCAPTCHA widget ID, verify it
             if (recaptchaId && typeof recaptchaWidgets !== 'undefined') {
                 const recaptchaResponse = grecaptcha.getResponse(recaptchaWidgets[recaptchaId]);
-                
+
                 if (!recaptchaResponse) {
                     alert("Please complete the reCAPTCHA verification.");
                     return;
                 }
-                
+
+                // Check for invalid key type error
+                if (recaptchaResponse === 'ERROR: Invalid key type') {
+                    alert("Invalid reCAPTCHA key type. Ensure you are using the correct reCAPTCHA version (v2 Checkbox). Contact the site administrator if the issue persists.");
+                    return;
+                }
+
                 // Add reCAPTCHA response to the data we'll send
                 const formData = new FormData(this);
                 const data = {};
                 formData.forEach((value, key) => {
                     data[key] = value;
                 });
-                
-                // Add the recaptcha token
+
+                // Add the reCAPTCHA token
                 data.recaptchaToken = recaptchaResponse;
-                
-                // Continue with form processing
-                data.formType = formId;
-                data.submittedAt = new Date().toISOString();
-                
+
                 // Implement submission throttling - store last submission time
                 const lastSubmission = localStorage.getItem('lastFormSubmission');
                 const currentTime = new Date().getTime();
