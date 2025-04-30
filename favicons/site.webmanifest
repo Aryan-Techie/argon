@@ -1,6 +1,11 @@
 {
-  "name": "ARGON",
+  "name": "ARGON - Your Shield Against Chaos",
   "short_name": "ARGON",
+  "description": "An Intelligent Shield that Blocks Distractions so You can Focus on What Truly Matters.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#5F7FFF",
   "icons": [
     {
       "src": "/favicons/android-chrome-192x192.png",
@@ -12,8 +17,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  ]
 }
