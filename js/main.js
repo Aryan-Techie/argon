@@ -3,7 +3,7 @@
     try {
         // Define start and end dates (fixed starting date to ensure consistent progression)
         const startDate = new Date('April 5, 2025 00:00:00 GMT+0530'); // Fixed start date
-        const endDate = new Date('July 1, 2025 00:00:00 GMT+0530'); // End date (IST timezone)
+        const endDate = new Date('July 12, 2025 00:00:00 GMT+0530'); // End date (IST timezone)
         const currentDate = new Date(); // Today's date
         
         // Starting and ending percentages
