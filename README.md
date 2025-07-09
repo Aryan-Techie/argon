@@ -2,63 +2,72 @@
 
 <img src="webp/logo.webp" alt="ARGON Logo" width="100">
 
+> **⚠️ IMPORTANT:** This repository contains the **website and landing page** for ARGON.  
+> **For the actual browser extension, visit:** [**github.com/aroice-hq/argon**](https://github.com/aroice-hq/argon)
+
+## 🔗 Quick Links
+
+- **🚀 Get ARGON Extension:** [github.com/aroice-hq/argon](https://github.com/aroice-hq/argon)
+- **📖 Features & Documentation:** [Main Repository](https://github.com/aroice-hq/argon)
+- **🐛 Bug Reports & Issues:** [GitHub Issues](https://github.com/aroice-hq/argon/issues)
+- **🤝 Contributing:** [Contributing Guide](https://github.com/aroice-hq/argon/blob/main/CONTRIBUTING.md)
+
+## 🌐 About This Repository
+
+This repository hosts the official ARGON website at [argon.aroice.in](https://argon.aroice.in), which serves as the landing page and help center for the ARGON browser extension.
+
 ## 🚀 About ARGON
 
-ARGON is an intelligent shield that blocks distractions so you can focus on what truly matters. Our browser extension helps you maintain focus by understanding your patterns and providing intelligent nudges before distraction even begins.
+ARGON is a powerful productivity Chrome extension designed to enhance your digital habits and protect you from online distractions. It's an intelligent shield that blocks distractions so you can focus on what truly matters.
 
-> **Coming Soon:** We're working hard to bring ARGON to your browser!
+> **📍 For complete features, installation instructions, and documentation, visit:** [**github.com/aroice-hq/argon**](https://github.com/aroice-hq/argon)
 
-## ✨ Features
+## 🌐 Website Structure
 
-### 🧠 Mindful Focus Engine
-Argon doesn't just block sites—it **understands** your patterns. With intelligent nudges, it helps you course-correct before distraction even begins.
+This repository contains:
 
-### 📊 Productivity, Visualized Like Never Before
-Not just bar graphs. Argon shows your digital behavior as trends, streaks, and actionable insights to help you **actually** change habits.
+- **Landing Page** (`index.html`) - Main website homepage
+- **Help Center** (`help/`) - User documentation and guides
+- **Privacy Policy** (`privacy.html`) - Data protection information
+- **Terms of Service** (`terms.html`) - Usage terms and conditions
 
-### 🛡️ Context-Aware Blocking
-Whether it's a late-night doom-scroll or mid-study tab chaos, Argon adapts in real time blocking distractions **only when it matters most**.
+## 📞 Contact & Support
 
-## 📅 Development Status
+- 📧 **Extension Support**: [admin@aroice.in](mailto:admin@aroice.in)
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/aroice-hq/argon/issues)
+- 💼 **LinkedIn**: [Aryan Jangra](https://www.linkedin.com/in/aryantechie)
+- 📷 **Instagram**: [@aryantechie](https://instagram.com/aryantechie)
+- 🐦 **Twitter**: [@aryantechie](https://x.com/aryantechie)
 
-- ✅ **Core Engine**: Complete
-- 🔄 **Features**: In Progress
-- 📆 **Launch Date**: Coming Soon
 
-## 🚀 Getting Started
 
-ARGON is still in development. To stay updated on our progress:
+##  Privacy & Security
 
-1. Bookmark our [website](https://argon.aroice.in)
-2. Follow us on [Twitter](https://x.com/aryantechie)
-3. Connect with us on [LinkedIn](https://www.linkedin.com/in/aryantechie)
+ARGON is designed with privacy-first principles. All data stays on your device with no external tracking.
 
-## 📬 Contact
-
-- 📧 Email: [admin@aroice.in](mailto:admin@aroice.in)
-- 💼 LinkedIn: [Aryan Jangra](https://www.linkedin.com/in/aryantechie)
-- 📷 Instagram: [@aryantechie](https://instagram.com/aryantechie)
-- 🐦 Twitter: [@aryantechie](https://x.com/aryantechie)
-
-## 🔒 Privacy & Security
-
-ARGON is designed with your privacy and security in mind. We believe in:
-
-- Transparent data practices
-- Minimal data collection
-- Strong encryption standards
-- User control over their data
-
-## 🛠️ Technical Stack
-
-- Frontend: HTML5, CSS3, Modern JavaScript
-- Browser Extension: Chrome Extension API
-- Focus Engine: Proprietary AI algorithms
+> **📖 Detailed Privacy Information:** [Privacy Policy](privacy.html) | [Extension Privacy Details](https://github.com/aroice-hq/argon)
 
 ## 🤝 Contributing
 
-While ARGON is currently in closed development, we welcome feedback and suggestions! Feel free to reach out through any of our contact channels.
+> **🚀 For Extension Development:** All ARGON extension development happens in the [main repository](https://github.com/aroice-hq/argon).
+
+**Website Contributions:** This repository welcomes contributions for website improvements, documentation enhancements, and help center content.
+
+## 👨‍💻 Author
+
+**Aryan Techie** - [AROICE](https://aroice.in)
+- 🌐 [aryan.aroice.in](https://aryan.aroice.in)
+- 📧 [aryan@aroice.in](mailto:aryan@aroice.in)
+- 🐙 [@Aryan-Techie](https://github.com/Aryan-Techie)
 
 ---
 
-Created with ❤️ by Aroice - feel free to contact us!
+<div align="center">
+
+**Made with ❤️ by [AROICE](https://github.com/aroice-hq)**
+
+*Building tools for a better digital future.*
+
+[🌐 Website](https://argon.aroice.in) • [📱 Extension](https://github.com/aroice-hq/argon) • [📧 Support](mailto:admin@aroice.in)
+
+</div>
