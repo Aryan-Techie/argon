@@ -31,33 +31,320 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
     <style>
-        main {
-            max-width: 800px;
-            margin: 0 auto;
+        body {
+            background: radial-gradient(circle at 50% 50%, #050c17 0%, #000000 100%) !important;
+            color: var(--text-color);
+            min-height: 100vh;
+            margin: 0;
             padding: 20px;
         }
+        
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: var(--container-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header a {
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        header a:hover {
+            transform: scale(1.05);
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            z-index: 10;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-color);
+            transform: translateX(-2px);
+        }
+        
+        .back-button svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+        }
+        
+        .back-button:hover svg {
+            stroke: var(--primary-color);
+        }
+        
+        .logo {
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+        
         h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
             text-align: center;
             margin-bottom: 30px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
         }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 2px;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        }
+        
         h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+        
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
             margin-top: 30px;
             margin-bottom: 15px;
+            color: var(--primary-light);
         }
+        
         p {
-            margin-bottom: 15px;
-            line-height: 1.6;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--text-light);
+            font-size: 1rem;
         }
+        
+        section {
+            position: relative;
+            z-index: 1;
+        }
+        
+        ul {
+            text-align: left;
+            margin: 15px 0;
+            padding-left: 0;
+        }
+        
+        li {
+            text-align: left;
+            margin-bottom: 12px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--primary-color);
+            border-radius: 0 8px 8px 0;
+            list-style: none;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        li:hover {
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateX(5px);
+        }
+        
+        li::before {
+            content: '→';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+        
+        a:hover {
+            color: var(--primary-light);
+        }
+        
         .last-updated {
             font-style: italic;
-            margin-top: 40px;
+            margin-top: 50px;
             text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-lighter);
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            text-align: center;
+        }
+        
+        .powered-by {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-lighter);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        
+        .aroice-link {
+            font-weight: 600;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.5px;
+        }
+        
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--text-lighter);
+            opacity: 0.8;
+        }
+        
+        /* Light mode adjustments */
+        [data-theme="light"] body {
+            background: radial-gradient(circle at 50% 50%, #f0f4ff 0%, #ffffff 100%) !important;
+        }
+        
+        [data-theme="light"] main {
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        [data-theme="light"] li {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
+        [data-theme="light"] li:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+        
+        [data-theme="light"] .last-updated {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            main {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+            
+            li {
+                padding: 10px 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            main {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+    </button>
+
     <main>
+        <a href="index.html" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+        </a>
         <header>
             <a href="index.html">
                 <img src="webp/logo.webp" alt="ARGON Logo" class="logo" style="max-width: 80px;">
@@ -66,51 +353,158 @@
         </header>
 
         <section>
-            <p>By using ARGON, you agree to these Terms of Service. Please read them carefully.</p>
+            <p>By using ARGON, you agree to these Terms of Service. Please read them carefully before installing or using our Chrome extension.</p>
             
             <h2>Acceptance of Terms</h2>
-            <p>By downloading, installing, or using ARGON, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, please do not use our extension.</p>
+            <p>By downloading, installing, or using ARGON, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, please do not use our extension.</p>
             
             <h2>Description of Service</h2>
-            <p>ARGON is a browser extension designed to help users manage digital distractions and improve productivity. The extension operates completely locally on your device without requiring internet connectivity for its core functionality.</p>
-            
-            <h2>Privacy and Data</h2>
-            <p>ARGON operates as a completely local extension:</p>
+            <p>ARGON is a productivity-focused Chrome extension designed to help users:</p>
             <ul>
-                <li>All data is stored exclusively on your device</li>
-                <li>No user data is transmitted to or stored on our servers</li>
-                <li>No account creation or authentication is required</li>
-                <li>See our Privacy Policy for more details on how your data is handled</li>
+                <li><strong>Block Distracting Websites:</strong> Smart site blocking with custom domain filtering and temporary access options</li>
+                <li><strong>Track Screen Time:</strong> Monitor daily and weekly browsing patterns with detailed analytics</li>
+                <li><strong>Prevent Doom Scrolling:</strong> Intelligent detection and intervention for excessive scrolling behavior</li>
+                <li><strong>Enhance Focus:</strong> Built-in Pomodoro timer with customizable work and break sessions</li>
+                <li><strong>Promote Digital Wellbeing:</strong> Health reminders for posture, hydration, eye care, and movement</li>
+                <li><strong>Provide Modern Interface:</strong> Clean, intuitive dashboard with dark theme and smooth animations</li>
+            </ul>
+            <p>The extension operates completely locally on your device without requiring internet connectivity for its core functionality.</p>
+            
+            <h2>Open Source License</h2>
+            <p>ARGON is released under the MIT License:</p>
+            <ul>
+                <li>Source code is publicly available at <a href="https://github.com/aroice-hq/argon" target="_blank">github.com/aroice-hq/argon</a></li>
+                <li>You may use, modify, and distribute the software subject to license terms</li>
+                <li>Copyright (c) 2025 AROICE - All rights reserved</li>
+                <li>Full license text is available in the repository</li>
             </ul>
             
-            <h2>User Content</h2>
-            <p>Any data you input into ARGON, such as blocked websites or productivity goals, remains entirely on your device and under your control. We have no access to this information.</p>
+            <h2>Privacy and Data Protection</h2>
+            <p>ARGON operates as a completely local extension with strong privacy protections:</p>
+            <ul>
+                <li><strong>Local Storage Only:</strong> All data is stored exclusively on your device using Chrome's storage API</li>
+                <li><strong>No Data Transmission:</strong> No user data is transmitted to or stored on external servers</li>
+                <li><strong>No Account Required:</strong> No registration, authentication, or account creation needed</li>
+                <li><strong>No Tracking:</strong> No analytics, telemetry, or user behavior tracking</li>
+                <li><strong>No Ads:</strong> Completely ad-free experience with no advertising networks</li>
+                <li>See our <a href="privacy.html">Privacy Policy</a> for comprehensive details</li>
+            </ul>
             
-            <h2>Acceptable Use</h2>
+            <h2>Permitted Uses</h2>
+            <p>You may use ARGON for:</p>
+            <ul>
+                <li>Personal productivity enhancement and digital wellbeing</li>
+                <li>Blocking access to distracting websites during work or study</li>
+                <li>Monitoring and analyzing your own browsing patterns</li>
+                <li>Setting health reminders and productivity timers</li>
+                <li>Managing doom scrolling and excessive browsing behavior</li>
+                <li>Educational purposes and productivity research</li>
+            </ul>
+            
+            <h2>Prohibited Uses</h2>
             <p>You agree not to:</p>
             <ul>
-                <li>Use ARGON for any illegal purpose</li>
-                <li>Attempt to reverse engineer or modify the extension</li>
-                <li>Redistribute the extension outside of official channels</li>
-                <li>Use the extension to interfere with the proper functioning of websites in ways not related to its intended purpose</li>
+                <li>Use ARGON for any illegal purpose or to violate applicable laws</li>
+                <li>Attempt to reverse engineer, decompile, or modify the extension beyond permitted customizations</li>
+                <li>Redistribute the extension outside of official channels (Chrome Web Store, GitHub)</li>
+                <li>Use the extension to interfere with websites in ways not related to its intended productivity purpose</li>
+                <li>Circumvent website blocking features to access prohibited content in regulated environments</li>
+                <li>Use the extension to monitor or collect data from other users without their consent</li>
+                <li>Modify or remove copyright notices or attribution information</li>
             </ul>
             
-            <h2>Intellectual Property</h2>
-            <p>ARGON and its original content, features, and functionality are owned by AROICE and are protected by international copyright, trademark, and other intellectual property laws.</p>
+            <h2>Browser Permissions and Functionality</h2>
+            <p>ARGON requires specific browser permissions to function:</p>
+            <ul>
+                <li><strong>Storage:</strong> To save your preferences and statistics locally</li>
+                <li><strong>WebNavigation:</strong> To monitor and block distracting websites</li>
+                <li><strong>Tabs:</strong> To access current tab information for blocking functionality</li>
+                <li><strong>Alarms:</strong> To schedule health reminders and productivity timers</li>
+                <li><strong>Notifications:</strong> To display wellbeing reminders and productivity alerts</li>
+                <li><strong>Scripting:</strong> To inject doom scroll detection and intervention scripts</li>
+            </ul>
+            <p>These permissions are used exclusively for the extension's intended functionality and are never used to collect personal data.</p>
+            
+            <h2>User Content and Data</h2>
+            <p>Any data you input into ARGON, including but not limited to:</p>
+            <ul>
+                <li>Blocked website lists and preferences</li>
+                <li>Screen time statistics and analytics</li>
+                <li>Pomodoro timer sessions and history</li>
+                <li>Health reminder settings and schedules</li>
+                <li>Custom configurations and preferences</li>
+            </ul>
+            <p>Remains entirely on your device and under your control. We have no access to this information and cannot retrieve, modify, or share it.</p>
+            
+            <h2>Intellectual Property Rights</h2>
+            <p>ARGON and its original content, features, and functionality are owned by AROICE and protected by:</p>
+            <ul>
+                <li>International copyright laws</li>
+                <li>Trademark protections</li>
+                <li>Other applicable intellectual property laws</li>
+                <li>MIT License terms for open source components</li>
+            </ul>
+            <p>The ARGON name, logo, and associated branding are trademarks of AROICE.</p>
             
             <h2>Updates and Modifications</h2>
-            <p>We may update or modify the extension from time to time through your browser's extension update mechanism. These updates may include bug fixes, feature improvements, or changes to comply with browser requirements.</p>
+            <p>We may update or modify ARGON through your browser's extension update mechanism. Updates may include:</p>
+            <ul>
+                <li>Bug fixes and performance improvements</li>
+                <li>New productivity features and enhancements</li>
+                <li>Security patches and vulnerability fixes</li>
+                <li>Chrome Web Store policy compliance updates</li>
+                <li>User interface improvements and optimizations</li>
+            </ul>
+            <p>Major feature changes will be documented in our GitHub repository and website.</p>
+            
+            <h2>Disclaimer of Warranties</h2>
+            <p>ARGON is provided "as is" and "as available" without warranties of any kind, either express or implied, including but not limited to:</p>
+            <ul>
+                <li>Merchantability and fitness for a particular purpose</li>
+                <li>Non-infringement of third-party rights</li>
+                <li>Continuous, uninterrupted, or error-free operation</li>
+                <li>Accuracy, reliability, or completeness of content</li>
+                <li>Compatibility with all websites and browsers</li>
+            </ul>
             
             <h2>Limitation of Liability</h2>
-            <p>ARGON is provided "as is" without warranties of any kind. In no event shall AROICE be liable for any damages arising out of the use or inability to use our extension.</p>
+            <p>To the maximum extent permitted by law, AROICE shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from:</p>
+            <ul>
+                <li>Your use or inability to use the extension</li>
+                <li>Any unauthorized access to your stored data</li>
+                <li>Bugs, viruses, or other harmful code in the extension</li>
+                <li>Any interruption or cessation of the extension's functionality</li>
+            </ul>
+            
+            <h2>Indemnification</h2>
+            <p>You agree to indemnify and hold harmless AROICE from and against any claims, damages, losses, liabilities, costs, and expenses arising out of or relating to your use of ARGON in violation of these Terms of Service.</p>
+            
+            <h2>Termination</h2>
+            <p>These terms remain in effect until terminated by either party. You may terminate your use of ARGON at any time by uninstalling the extension. We may terminate or suspend your access to ARGON if you violate these terms.</p>
+            
+            <h2>Governing Law</h2>
+            <p>These Terms of Service are governed by and construed in accordance with applicable laws. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the appropriate courts.</p>
             
             <h2>Changes to Terms</h2>
-            <p>We reserve the right to modify these terms at any time. We will provide notice of significant changes on our website.</p>
+            <p>We reserve the right to modify these terms at any time. Significant changes will be communicated through:</p>
+            <ul>
+                <li>Updates to this page with a new "Last Updated" date</li>
+                <li>Notifications through the extension interface</li>
+                <li>Announcements on our website and GitHub repository</li>
+            </ul>
+            <p>Continued use of ARGON after changes constitutes acceptance of the updated terms.</p>
             
-            <h2>Contact Us</h2>
-            <p>If you have questions about our Terms of Service, please contact us at <a href="mailto:admin@aroice.in">admin@aroice.in</a>.</p>
+            <h2>Contact Information</h2>
+            <p>If you have questions about these Terms of Service or need support:</p>
+            <ul>
+                <li>Email: <a href="mailto:admin@aroice.in">admin@aroice.in</a></li>
+                <li>Support: <a href="mailto:aryan@aroice.in">aryan@aroice.in</a></li>
+                <li>GitHub Issues: <a href="https://github.com/aroice-hq/argon/issues" target="_blank">Report issues</a></li>
+                <li>Website: <a href="https://argon.aroice.in" target="_blank">argon.aroice.in</a></li>
+                <li>Developer: <a href="https://aryan.aroice.in" target="_blank">Aryan Techie</a></li>
+            </ul>
             
-            <p class="last-updated">Last Updated: April 30, 2025</p>
+            <p class="last-updated">Last Updated: July 9, 2025</p>
         </section>
         
         <footer>
