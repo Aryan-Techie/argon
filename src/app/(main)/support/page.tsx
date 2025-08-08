@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Heading,
   Text,
@@ -84,11 +82,6 @@ export default function Support() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <style jsx>{`
-        .hover-underline:hover {
-          text-decoration: underline !important;
-        }
-      `}</style>
       
       <Navigation />
 
