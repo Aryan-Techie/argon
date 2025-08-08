@@ -1,0 +1,17 @@
+/* TEAM */
+Developer: Aryan Techie
+Contact: aryan@aroice.in
+Twitter: @aryantechie
+From: India
+
+/* THANKS */
+Thanks to the open source community and Chrome Web Store
+
+/* SITE */
+Last update: 2025/01/08
+Language: English
+Doctype: HTML5
+IDE: VS Code
+Standards: W3C
+Components: Next.js, TypeScript, React
+Software: ARGON Chrome Extension

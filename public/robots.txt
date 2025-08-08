@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Specific bot permissions
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block certain paths if needed (currently allowing all)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://argon.aroice.in/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1

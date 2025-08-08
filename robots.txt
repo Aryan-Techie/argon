@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://argon.aroice.in/sitemap.xml
