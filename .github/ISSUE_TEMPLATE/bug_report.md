@@ -1,33 +1,52 @@
-name: Bug Report
-about: Report a bug in ARGON Chrome Extension
+---
+name: 🐛 Bug Report
+about: Create a report to help us improve ARGON
+title: '[BUG] '
+labels: ['bug', 'needs-triage']
+assignees: ''
+---
 
-### Thank you for taking the time to fill out this bug report for ARGON.
-If you need urgent help, please also check our support page or fund development at https://razorpay.me/@aroice
+## 🐛 Bug Description
+A clear and concise description of what the bug is.
 
-**Tell us what happened**
+## 🔄 Steps to Reproduce
+1. Go to '...'
+2. Click on '...'
+3. Scroll down to '...'
+4. See error
 
-[A clear and concise description of the bug you've encountered.]
+## ✅ Expected Behavior
+A clear and concise description of what you expected to happen.
 
+## ❌ Actual Behavior
+A clear and concise description of what actually happened.
 
-**Affected components**
+## 📸 Screenshots
+If applicable, add screenshots to help explain your problem.
 
-[Is the bug related to an existing feature or component?]
+## 🌐 Environment
+- **Chrome Version**: [e.g. 126.0.6478.127]
+- **ARGON Version**: [e.g. 0.1.3]
+- **Operating System**: [e.g. Windows 11, macOS 14.5, Ubuntu 22.04]
+- **Device**: [e.g. Desktop, Laptop]
 
+## 📋 Additional Context
+Add any other context about the problem here.
 
-**How do we reproduce it?**
+## 🔍 Console Errors
+If applicable, paste any console errors you see:
+```
+[Paste console errors here]
+```
 
-[Please share a step-by-step description of how to reproduce the issue.]
+## 🎯 Priority
+- [ ] Low - Minor issue that doesn't affect functionality
+- [ ] Medium - Affects functionality but has workaround
+- [ ] High - Major functionality broken
+- [ ] Critical - Extension completely unusable
 
-
-**Screenshots**
-
-[If applicable, add screenshots to help explain your problem.]
-
-
-**System information and logs**
-
-[Add any information that might be relevant.]
-
-**Support ARGON**
-- If you appreciate this project, consider supporting us: https://razorpay.me/@aroice
-- For more help, visit our support page or contact admin@aroice.in
+## 📝 Additional Information
+- [ ] I have searched for similar issues
+- [ ] I have tried restarting Chrome
+- [ ] I have tried disabling and re-enabling the extension
+- [ ] I am willing to help test the fix
